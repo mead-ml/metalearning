@@ -1,0 +1,4 @@
+- label: few-nerd-inter-5_5
+  train_file: /home/dpressel/dev/work/Few-NERD/data/episode-data/inter/train_5_5.jsonl
+  valid_file: /home/dpressel/dev/work/Few-NERD/data/episode-data/inter/dev_5_5.jsonl
+  test_file: /home/dpressel/dev/work/Few-NERD/data/episode-data/inter/test_5_5.jsonl

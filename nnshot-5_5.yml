@@ -1,0 +1,34 @@
+task: meta_tagger
+dataset: few-nerd-inter-5_5
+preproc: {}
+# The feature/label here roughly is the same as it would be for any tagger task
+# For BERT the vocab is handled implicitly for the label_vectorizer.  You
+# can find other examples in the MEAD tag pipelines
+# You will want make sure that mxlen is the same for features and labels
+features:
+ - name: word
+   vectorizer:
+     label: bert-base-uncased-dict1d
+     mxlen: 20  # Change to 128 e.g.
+   embeddings:
+     label: bert-base-uncased-npz # located in /data/embeddings/embeddings.yml
+loader:
+  samples_per_epoch: 4000  # 1k steps
+  label_vectorizer:
+    label: labels
+    type: wordpiece-label-dict1d
+    mxlen: 20  # Change to 128 e.g.
+
+model:
+  model_type: default
+
+train:
+  nsteps: 100
+  batchsz: 1
+  grad_accum: 4
+  epochs: 2
+  optim: adam
+  eta: 1.0e-5
+  patience: 15
+  early_stopping_metric: f1
+  clip: 5.0
